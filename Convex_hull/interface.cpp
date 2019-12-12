@@ -82,6 +82,8 @@ void Interface::generate(int x, int y)
 
         lines.push_back(line);
     }
+
+    conv.pop_back();
 }
         
 void Interface::regenerate()
