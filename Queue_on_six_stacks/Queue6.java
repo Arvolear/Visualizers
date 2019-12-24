@@ -55,7 +55,7 @@ class Queue6<T>
                 output.push(tmpStorage.peek());
                 outputHelper.push(tmpStorage.peek());
 
-                actionsLimit--;
+                outputToCopy--;
             }
             
             tmpStorage.pop();
@@ -187,5 +187,20 @@ class Queue6<T>
     Stack<T> getInputHelper()
     {
         return inputHelper;
+    }
+
+    Integer getOutputToCopy()
+    {
+        return outputToCopy;
+    }
+
+    boolean getCopying()
+    {
+        return copying;
+    }
+
+    boolean getOutputIsCopied()
+    {
+        return outputIsCopied;
     }
 }

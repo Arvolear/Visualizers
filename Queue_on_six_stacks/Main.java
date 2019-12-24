@@ -4,6 +4,8 @@ class Main
 {
     public static void main(String args[])
     {
-        Interface.play();
+        Interface I = new Interface();
+
+        I.init();
     }
 }
