@@ -1,12 +1,10 @@
 Algorithm = App.class Interface.class Controller.class SpeedController.class Grid.class Sueue.class DrawableStack.class Element.class 
 
-CLASSES = Main.class $(addprefix Algorithm/, $(Algorithm))
-
-OUTPUTDIR = ./build 
+CLASSES = Main.class $(Algorithm)
 
 ### ALL ###
 
-Main: $(CLASSES) 
+ALL: $(CLASSES) 
 
 Main.class: Main.java
 	javac Main.java
@@ -14,29 +12,29 @@ Main.class: Main.java
 ### ALGORITHM ###
 
 App.class: Algorithm/App.java
-	javac -d $(OUTPUTDIR) Algorithm/App.java
+	javac Algorithm/App.java
 
 Interface.class: Algorithm/Interface.java
-	javac -d $(OUTPUTDIR) Algorithm/Interface.java
+	javac Algorithm/Interface.java
 
 Controller.class: Algorithm/Controller.java
-	javac -d $(OUTPUTDIR) Algorithm/Controller.java
+	javac Algorithm/Controller.java
 
 SpeedController.class: Algorithm/SpeedController.java
-	javac -d $(OUTPUTDIR) Algorithm/SpeedController.java
+	javac Algorithm/SpeedController.java
 
 Grid.class: Algorithm/Grid.java
-	javac -d $(OUTPUTDIR) Algorithm/Grid.java
+	javac Algorithm/Grid.java
 
 Sueue.class: Algorithm/Sueue.java
-	javac -d $(OUTPUTDIR) Algorithm/Sueue.java
+	javac Algorithm/Sueue.java
 
 DrawableStack.class: Algorithm/DrawableStack.java
-	javac -d $(OUTPUTDIR) Algorithm/DrawableStack.java
+	javac Algorithm/DrawableStack.java
 
 Element.class: Algorithm/Element.java
-	javac -d $(OUTPUTDIR) Algorithm/Element.java
+	javac Algorithm/Element.java
 
 clean:
-	rm -rf Main.class
-	rm -rf build/.*class
+	rm -rf ./Main.class
+	rm -rf ./Algorithm/*.class
