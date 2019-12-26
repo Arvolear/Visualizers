@@ -13,29 +13,29 @@ Main.class: Main.java
 
 ### ALGORITHM ###
 
-$(OUTPUTDIR)/App.class: Algorithm/App.java
-	javac Algorithm/App.java
+App.class: Algorithm/App.java
+	javac -d $(OUTPUTDIR) Algorithm/App.java
 
-$(OUTPUTDIR)/Interface.class: Algorithm/Interface.java
-	javac Algorithm/Interface.java
+Interface.class: Algorithm/Interface.java
+	javac -d $(OUTPUTDIR) Algorithm/Interface.java
 
-$(OUTPUTDIR)/Controller.class: Algorithm/Controller.java
-	javac Algorithm/Controller.java
+Controller.class: Algorithm/Controller.java
+	javac -d $(OUTPUTDIR) Algorithm/Controller.java
 
-$(OUTPUTDIR)/SpeedController.class: Algorithm/SpeedController.java
-	javac Algorithm/SpeedController.java
+SpeedController.class: Algorithm/SpeedController.java
+	javac -d $(OUTPUTDIR) Algorithm/SpeedController.java
 
-$(OUTPUTDIR)/Grid.class: Algorithm/Grid.java
-	javac Algorithm/Grid.java
+Grid.class: Algorithm/Grid.java
+	javac -d $(OUTPUTDIR) Algorithm/Grid.java
 
-$(OUTPUTDIR)/Sueue.class: Algorithm/Sueue.java
-	javac Algorithm/Sueue.java
+Sueue.class: Algorithm/Sueue.java
+	javac -d $(OUTPUTDIR) Algorithm/Sueue.java
 
-$(OUTPUTDIR)/DrawableStack.class: Algorithm/DrawableStack.java
-	javac Algorithm/DrawableStack.java
+DrawableStack.class: Algorithm/DrawableStack.java
+	javac -d $(OUTPUTDIR) Algorithm/DrawableStack.java
 
-$(OUTPUTDIR)/Element.class: Algorithm/Element.java
-	javac Algorithm/Element.java
+Element.class: Algorithm/Element.java
+	javac -d $(OUTPUTDIR) Algorithm/Element.java
 
 clean:
 	rm -rf Main.class

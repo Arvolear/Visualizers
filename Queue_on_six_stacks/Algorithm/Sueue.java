@@ -1,1 +1,206 @@
-ntent_length":"60347096776","intl":{"accept_languages":"ru-RU,ru,en-US,en"},"invalidation":{"per_sender_active_registration_tokens":{"8181035976":"eDrM4LwSOfM:APA91bGVlHkwKmNmFt10lqdDxbQOgoYoH6SMuvRVxfxuALnPHBtocfsUeFjnlcW0soQhkjX3G7CpGSrNMVQh1vek1VCgjt1b8nvVsSVvAyqcNRenIjQ7OAxVllsl0PmvaJBb6T6ZZddn"},"per_sender_client_id_cache":{"8181035976":"eDrM4LwSOfM"},"per_sender_registered_for_invalidation":{"8181035976":{"APP":"/private/APP-_0USGEjLlmFrQvnJfvyjPA","APP_SETTING":"/private/APP_SETTING-Bt0dqY0-Trz0WsbfhVJLZg","AUTOFILL":"/private/AUTOFILL-xSlzYKO6gCPL52Kchd_VgQ","AUTOFILL_PROFILE":"/private/AUTOFILL_PROFILE-3qQ3VONEa_3hHZi1749TIw","AUTOFILL_WALLET":"/private/AUTOFILL_WALLET-RRWM98Nz_IbAJR2fLi1QPg","BOOKMARK":"/private/BOOKMARK-aHcVx5bj4hbUyrjJp2Cpmw","DEVICE_INFO":"/private/DEVICE_INFO-5cBf7JmooDsEaVPQVm_yfw","DICTIONARY":"/private/DICTIONARY-57dzC2iwB-pPC-8RTevsBQ","EXPERIMENTS":"/private/EXPERIMENTS-wyX3E-BtPKWDjqxn-5j2-A","EXTENSION":"/private/EXTENSION-vfrWj15T7PHeGkg8pbY16g","EXTENSION_SETTING":"/private/EXTENSION_SETTING-CqpCmHJtl9tXs3TLNBGi9A","FAVICON_IMAGE":"/private/FAVICON_IMAGE-ywCNxi-Gz8WqmgKgqyuC-g","HISTORY_DELETE_DIRECTIVE":"/private/HISTORY_DELETE_DIRECTIVE-ffw82v8v7--M-RPrGICE1A","NIGORI":"/private/NIGORI-KOLUgPQ6EIsu0x483Q_y6Q","PASSWORD":"/private/PASSWORD-DxTbqOIBhweppNX1HdyQ5Q","PREFERENCE":"/private/PREFERENCE-6B0OuivVVkhwfhMTQ5J6KA","PRIORITY_PREFERENCE":"/private/PRIORITY_PREFERENCE-olQH-n66drytgXpGYZi_LA","SEARCH_ENGINE":"/private/SEARCH_ENGINE-NZ-ciKhl-ENLqF6yv4Q7Jg","SECURITY_EVENT":"/private/SECURITY_EVENT-26L-88woxxVmZLTihjaJJA","SEND_TAB_TO_SELF":"/private/SEND_TAB_TO_SELF-FLvgPhkqNuUq1nHwgG-fzg","THEME":"/private/THEME-VFSamqqCzDCIsbEl0-2KPg","TYPED_URL":"/private/TYPED_URL-EPhA98OhXPL4lAC-mcLtaw","USER_CONSENT":"/private/USER_CONSENT-x2prkpfzbHUcOuulMW1U2w","USER_EVENT":"/private/USER_EVENT-OKl_k_jOhINA9J4QjY6P-g","WALLET_METADATA":"/private/WALLET_METADATA-6RovuCJqVguZKw6L1w4EEw"}},"per_sender_topics_to_handler":{"8181035976":{"APP":{"handler":"SyncEngineImpl","is_public":false},"APP_SETTING":{"handler":"SyncEngineImpl","is_public":false},"AUTOFILL":{"handler":"SyncEngineImpl","is_public":false},"AUTOFILL_PROFILE":{"handler":"SyncEngineImpl","is_public":false},"AUTOFILL_WALLET":{"handler":"SyncEngineImpl","is_public":false},"BOOKMARK":{"handler":"SyncEngineImpl","is_public":false},"DEVICE_INFO":{"handler":"SyncEngineImpl","is_public":false},"DICTIONARY":{"handler":"SyncEngineImpl","is_public":false},"EXPERIMENTS":{"handler":"SyncEngineImpl","is_public":false},"EXTENSION":{"handler":"SyncEngineImpl","is_public":false},"EXTENSION_SETTING":{"handler":"SyncEngineImpl","is_public":false},"FAVICON_IMAGE":{"handler":"SyncEngineImpl","is_public":false},"HISTORY_DELETE_DIRECTIVE":{"handler":"SyncEngineImpl","is_public":false},"NIGORI":{"handler":"SyncEngineImpl","is_public":false},"PASSWORD":{"handler":"SyncEngineImpl","is_public":false},"PREFERENCE":{"handler":"SyncEngineImpl","is_public":false},"PRIORITY_PREFERENCE":{"handler":"SyncEngineImpl","is_public":false},"SEARCH_ENGINE":{"handler":"SyncEngineImpl","is_public":false},"SECURITY_EVENT":{"handler":"SyncEngineImpl","is_public":false},"SEND_TAB_TO_SELF":{"handler":"SyncEngineImpl","is_public":false},"THEME":{"handler":"SyncEngineImpl","is_public":false},"TYPED_URL":{"handler":"SyncEngineImpl","is_public":false},"USER_CONSENT":{"handler":"SyncEngineImpl","is_public":false},"USER_EVENT":{"handler":"SyncEngineImpl","is_public":false},"WALLET_METADATA":{"handler":"SyncEngineImpl","is_public":false}}}},"invalidator":{"client_id":"+ct73bW+gW+yQHovKkv1LQ==","invalidation_state":"CicKJQoGCgQIAxABEhIJm8SAzwcUT7gR+EAVd8/vDCcaBwiCMhADGAESFPwjLTsNpQaIr+OKXYzR6lKgKCIJ","saved_invalidations":[{"invalidation-list":[],"name":"APP","source":"1004"},{"invalidation-list":[],"name":"APP_SETTING","source":"1004"},{"invalidation-list":[{"isUnknownVersion":false,"objectId":{"name":"AUTOFILL","source":1004},"payload":"W:ChdzdCnoz5A/+RcAeRfUSfZe9jIkCTCnFhDcv763h8XUtqMBGDMiKQoLCILxpeYFEIDZn00aDAiR8aXmBRCAwuCpASIMCJHxpeYFEMCej8EB","version":"1556707473356000"},{"isUnknownVersion":false,"objectId":{"name":"AUTOFILL","source":1004},"payload":"W:ChdzdCnoz5A/+RcAeRfUSfZe9nJmlV2nFhDcv763h8XUtqMBGDMiKgoMCJLmqOYFEIDNtpcCGgwIluao5gUQgMvsngMiDAiW5qjmBRDAp5u2Aw==","version":"1556755222870000"},{"isUnknownVersi
+package Algorithm;
+
+import java.awt.*;
+
+class Sueue
+{
+    private DrawableStack output;
+    private DrawableStack tmpStorage;
+    private DrawableStack outputCopy;
+    private DrawableStack outputHelper;
+    private DrawableStack input;
+    private DrawableStack inputHelper;
+
+    private int outputToCopy;
+    private boolean copying, outputIsCopied;
+
+    private void checkCopy()
+    {
+        copying = input.size() > output.size();
+
+        if (copying)
+        {
+            outputToCopy = output.size();
+            outputIsCopied = false;
+            performCopy();
+        }
+    }
+
+    private void performCopy()
+    {
+        int actionsLimit = 3;
+
+        while (!outputIsCopied && actionsLimit > 0 && !output.empty())
+        {
+            Element elem = new Element(output.top());
+            elem.setOuterColor(new Color(181, 73, 14));
+
+            tmpStorage.push(elem);
+
+            output.pop();
+
+            actionsLimit--;
+        }
+
+        while (actionsLimit > 0 && !input.empty())
+        {
+            outputIsCopied = true;
+
+            Element elem0 = new Element(input.top());
+            elem0.setOuterColor(new Color(181, 73, 14));
+            output.push(elem0);
+
+            Element elem1 = new Element(input.top());
+            elem1.setOuterColor(new Color(181, 73, 14));
+            outputHelper.push(elem1);
+
+            input.pop();
+
+            actionsLimit--;
+        }
+
+        while (actionsLimit > 0 && !tmpStorage.empty())
+        {
+            if (outputToCopy > 0)
+            {
+                Element elem0 = new Element(tmpStorage.top());
+                elem0.setOuterColor(new Color(181, 73, 14));
+                output.push(elem0);
+
+                Element elem1 = new Element(tmpStorage.top());
+                elem1.setOuterColor(new Color(181, 73, 14));
+                outputHelper.push(elem1);
+
+                outputToCopy--;
+            }
+
+            tmpStorage.pop();
+            actionsLimit--;
+        }
+
+        if (tmpStorage.empty())
+        {
+            DrawableStack tmp;
+
+            tmp = input;
+            input = inputHelper;
+            inputHelper = tmp;
+
+            tmp = outputCopy;
+            outputCopy = outputHelper;
+            outputHelper = tmp;
+        }
+
+        copying = !tmpStorage.empty();
+    }
+
+    Sueue() 
+    {
+        outputToCopy = 0;
+        copying = outputIsCopied = false;
+
+        output = new DrawableStack("Output", 20, 30);
+        tmpStorage = new DrawableStack("TmpStorage", 20, 125);
+        outputCopy = new DrawableStack("OutputCopy", 20, 220);
+        outputHelper = new DrawableStack("OutputHelper", 20, 315);
+        input = new DrawableStack("Input", 20, 410);
+        inputHelper = new DrawableStack("InputHelper", 20, 505);
+    }
+
+    boolean empty()
+    {
+        return !copying && output.empty();   
+    }
+
+    void push(String s)
+    {
+        Element elem = new Element(500, 300, 50, 50, s);
+
+        if (!copying)
+        {
+            input.push(elem);
+
+            if (!outputHelper.empty())
+            {
+                outputHelper.pop();
+            }
+
+            checkCopy();
+        }
+        else
+        {
+            inputHelper.push(elem);
+
+            performCopy();
+        }
+    }
+
+    void pop()
+    {
+        if (!copying)
+        {
+            output.pop();
+            outputCopy.pop();
+
+            if (!outputHelper.empty())
+            {
+                outputHelper.pop();
+            }
+
+            checkCopy();
+        }
+        else
+        {
+            outputCopy.pop();
+
+            if (outputToCopy > 0)
+            {
+                outputToCopy--;
+            }
+            else
+            {
+                output.pop();
+                outputHelper.pop();
+            }
+
+            performCopy();
+        }
+    }
+
+    Element front()
+    {
+        if (!copying)
+        {
+            return output.top();
+        }
+
+        return outputCopy.top();
+    }
+
+    Integer getOutputToCopy()
+    {
+        return outputToCopy;
+    }
+
+    boolean getCopying()
+    {
+        return copying;
+    }
+
+    boolean getOutputIsCopied()
+    {
+        return outputIsCopied;
+    }
+
+    void paint(Graphics g)
+    {
+        output.paint(g);
+        outputCopy.paint(g);
+        outputHelper.paint(g);
+
+        tmpStorage.paint(g);
+
+        input.paint(g);
+        inputHelper.paint(g);
+    }
+}
