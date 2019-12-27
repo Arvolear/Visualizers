@@ -114,6 +114,11 @@ class Sueue
 
     void push(String s)
     {
+		if (!empty())
+		{
+			front().setOuterColor(new Color(13, 87, 123));
+		}
+
         Element elem = new Element(500, 300, 50, 50, s);
 
         if (!copying)
@@ -133,6 +138,8 @@ class Sueue
 
             performCopy();
         }
+
+		front().setOuterColor(new Color(119, 55, 196));
     }
 
     void pop()
@@ -165,6 +172,11 @@ class Sueue
 
             performCopy();
         }
+		
+		if (!empty())
+		{
+			front().setOuterColor(new Color(119, 55, 196));
+		}
     }
 
     Element front()

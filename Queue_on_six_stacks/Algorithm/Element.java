@@ -216,7 +216,20 @@ class Element
         g.fillRect((int)inner.getX(), (int)inner.getY(), (int)inner.getWidth(), (int)inner.getHeight());
 
         g.setColor(new Color(230, 230, 230));
-        g.setFont(new Font(Font.SERIF, Font.PLAIN, fontSize));
-        g.drawString(heldNumber, (int)outer.getX() + (int)outer.getWidth() / 2 - fontSize / 3, (int)outer.getY() + (int)outer.getHeight() / 2 + fontSize / 3);
+
+		int scaleDown = heldNumber.length() / 2;
+		
+		if (scaleDown == 0)
+		{
+			scaleDown = 1;
+		}
+
+		int newFontSize = fontSize / scaleDown;
+
+		int centerPosx = (int)outer.getX() + (int)outer.getWidth() / 2 - newFontSize / 3;
+		int textPosx = centerPosx - heldNumber.length() / 2 * newFontSize / 3; 
+
+        g.setFont(new Font(Font.SERIF, Font.PLAIN, newFontSize));
+        g.drawString(heldNumber, textPosx, (int)outer.getY() + (int)outer.getHeight() / 2 + fontSize / 3);
     }
 }

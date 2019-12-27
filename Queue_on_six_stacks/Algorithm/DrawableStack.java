@@ -96,19 +96,24 @@ class DrawableStack
         return amount == 0 ? true : false;
     }
 
+	private void paint(Graphics g, Node node)
+	{
+		if (node == null)
+		{
+			return;
+		}
+
+		paint(g, node.next);
+
+		node.val.paint(g);
+	}
+
     void paint(Graphics g)
     {
         g.setColor(new Color(230, 230, 230));
         g.setFont(new Font(Font.SERIF, Font.PLAIN, fontSize));
         g.drawString(name, posx, posy - fontSize / 3);
 
-        Node cur = head;
-
-        while (cur != null)
-        {
-            cur.val.paint(g);
-
-            cur = cur.next;
-        }
-    }
+    	paint(g, head);
+	}
 }

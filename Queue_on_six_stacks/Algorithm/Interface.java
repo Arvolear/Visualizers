@@ -22,6 +22,7 @@ class Interface extends JPanel implements Runnable
 
         frame = new JFrame();
         frame.setSize(800, 600);
+		frame.setResizable(false);
         
         frame.addWindowListener(controller);
         frame.setVisible(true);

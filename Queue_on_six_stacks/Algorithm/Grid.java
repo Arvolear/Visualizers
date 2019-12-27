@@ -1,6 +1,7 @@
 package Algorithm;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 class Grid
@@ -65,139 +66,150 @@ class Grid
         pushPanel.setBounds(625, 100, 150, 100);
         pushPanel.setOpaque(false);
 
-        pushText.setBackground(new Color(100, 100, 100));
-        pushText.setForeground(new Color(230, 230, 230));
+		pushText.addKeyListener(new KeyAdapter() 
+					{
+						public void keyTyped(KeyEvent event) 
+						{ 
+							if (pushText.getText().length() >= 2)
+							{
+								event.consume(); 
+							}
+						}  
+					});
 
-        push.addActionListener(controller);
-        push.setBackground(new Color(100, 100, 100));
-        push.setForeground(new Color(230, 230, 230));
+		pushText.setBackground(new Color(100, 100, 100));
+		pushText.setForeground(new Color(230, 230, 230));
 
-        pushLabel.setBackground(new Color(100, 100, 100));
-        pushLabel.setForeground(new Color(230, 230, 230));
+		push.addActionListener(controller);
+		push.setBackground(new Color(100, 100, 100));
+		push.setForeground(new Color(230, 230, 230));
 
-        pushPanel.add(pushLabel);
-        pushPanel.add(pushText);
-        pushPanel.add(push);
+		pushLabel.setBackground(new Color(100, 100, 100));
+		pushLabel.setForeground(new Color(230, 230, 230));
 
-        frame.add(pushPanel);
+		pushPanel.add(pushLabel);
+		pushPanel.add(pushText);
+		pushPanel.add(push);
 
-        /* POP */
+		frame.add(pushPanel);
 
-        popPanel.setBounds(625, 200, 150, 100);
-        popPanel.setOpaque(false);
+		/* POP */
 
-        pop.addActionListener(controller);
-        pop.setBackground(new Color(100, 100, 100));
-        pop.setForeground(new Color(230, 230, 230));
+		popPanel.setBounds(625, 200, 150, 100);
+		popPanel.setOpaque(false);
 
-        popLabel.setBackground(new Color(100, 100, 100));
-        popLabel.setForeground(new Color(230, 230, 230));
+		pop.addActionListener(controller);
+		pop.setBackground(new Color(100, 100, 100));
+		pop.setForeground(new Color(230, 230, 230));
 
-        popPanel.add(popLabel);
-        popPanel.add(pop);
+		popLabel.setBackground(new Color(100, 100, 100));
+		popLabel.setForeground(new Color(230, 230, 230));
 
-        frame.add(popPanel);
+		popPanel.add(popLabel);
+		popPanel.add(pop);
 
-        /* INFO */
-        
-        if (queue.getCopying())
-        {
-            copyingLabel.setText("Copying: True");
-        }
-        else
-        {
-            copyingLabel.setText("Copying: False");
-        }
+		frame.add(popPanel);
 
-        if (queue.getOutputIsCopied())
-        {
-            isCopiedLabel.setText("OutputIsCopied: True");
-        }
-        else
-        {
-            isCopiedLabel.setText("OutputIsCopied: False");
-        }
+		/* INFO */
 
-        toCopyLabel.setText("OutputToCopy: " + queue.getOutputToCopy().toString());
+		if (queue.getCopying())
+		{
+				copyingLabel.setText("Copying: True");
+		}
+		else
+		{
+				copyingLabel.setText("Copying: False");
+		}
 
-        infoPanel.setBounds(600, 20, 200, 100);
-        infoPanel.setOpaque(false);
+		if (queue.getOutputIsCopied())
+		{
+				isCopiedLabel.setText("OutputIsCopied: True");
+		}
+		else
+		{
+				isCopiedLabel.setText("OutputIsCopied: False");
+		}
 
-        copyingLabel.setBackground(new Color(100, 100, 100));
-        copyingLabel.setForeground(new Color(230, 230, 230));
+		toCopyLabel.setText("OutputToCopy: " + queue.getOutputToCopy().toString());
 
-        isCopiedLabel.setBackground(new Color(100, 100, 100));
-        isCopiedLabel.setForeground(new Color(230, 230, 230));
+		infoPanel.setBounds(600, 20, 200, 100);
+		infoPanel.setOpaque(false);
 
-        toCopyLabel.setBackground(new Color(100, 100, 100));
-        toCopyLabel.setForeground(new Color(230, 230, 230));
+		copyingLabel.setBackground(new Color(100, 100, 100));
+		copyingLabel.setForeground(new Color(230, 230, 230));
 
-        infoPanel.add(copyingLabel);
-        infoPanel.add(isCopiedLabel);
-        infoPanel.add(toCopyLabel);
+		isCopiedLabel.setBackground(new Color(100, 100, 100));
+		isCopiedLabel.setForeground(new Color(230, 230, 230));
 
-        frame.add(infoPanel);
+		toCopyLabel.setBackground(new Color(100, 100, 100));
+		toCopyLabel.setForeground(new Color(230, 230, 230));
 
-        /* SPEED */
-        
-        speedPanel.setBounds(625, 500, 150, 70);
-        speedPanel.setLayout(new BorderLayout());
-        speedPanel.setOpaque(false);
+		infoPanel.add(copyingLabel);
+		infoPanel.add(isCopiedLabel);
+		infoPanel.add(toCopyLabel);
 
-        speedSlider.setMinorTickSpacing(1);
-        speedSlider.setMajorTickSpacing(7);
-        
-        speedSlider.setBackground(new Color(50, 50, 50));
-        speedSlider.setForeground(new Color(230, 230, 230));
+		frame.add(infoPanel);
 
-        speedSlider.setPaintTicks(true);
-        speedSlider.setPaintLabels(true);
-        
-        speedLabel.setBackground(new Color(100, 100, 100));
-        speedLabel.setForeground(new Color(230, 230, 230));
+		/* SPEED */
 
-        speedPanel.add(speedLabel, BorderLayout.PAGE_START);
-        speedPanel.add(speedSlider);
+		speedPanel.setBounds(625, 500, 150, 70);
+		speedPanel.setLayout(new BorderLayout());
+		speedPanel.setOpaque(false);
 
-        frame.add(speedPanel);
-    }
+		speedSlider.setMinorTickSpacing(1);
+		speedSlider.setMajorTickSpacing(7);
 
-    void update()
-    {
-        if (queue.getCopying())
-        {
-            copyingLabel.setText("Copying: True");
-        }
-        else
-        {
-            copyingLabel.setText("Copying: False");
-        }
+		speedSlider.setBackground(new Color(50, 50, 50));
+		speedSlider.setForeground(new Color(230, 230, 230));
 
-        if (queue.getOutputIsCopied())
-        {
-            isCopiedLabel.setText("OutputIsCopied: True");
-        }
-        else
-        {
-            isCopiedLabel.setText("OutputIsCopied: False");
-        }
+		speedSlider.setPaintTicks(true);
+		speedSlider.setPaintLabels(true);
 
-        toCopyLabel.setText("OutputToCopy: " + queue.getOutputToCopy().toString());
-    }
+		speedLabel.setBackground(new Color(100, 100, 100));
+		speedLabel.setForeground(new Color(230, 230, 230));
 
-    void paint(Graphics g)
-    {
-        g.setColor(fieldColor);
-        g.fillRect((int)field.getX(), (int)field.getY(), (int)field.getWidth(), (int)field.getHeight());
-    }
+		speedPanel.add(speedLabel, BorderLayout.PAGE_START);
+		speedPanel.add(speedSlider);
 
-    String getPushText()
-    {
-        return pushText.getText();
-    }
+		frame.add(speedPanel);
+	}
 
-    Integer getSpeed()
-    {
-        return speedSlider.getValue();
-    }
+	void update()
+	{
+			if (queue.getCopying())
+			{
+					copyingLabel.setText("Copying: True");
+			}
+			else
+			{
+					copyingLabel.setText("Copying: False");
+			}
+
+			if (queue.getOutputIsCopied())
+			{
+					isCopiedLabel.setText("OutputIsCopied: True");
+			}
+			else
+			{
+					isCopiedLabel.setText("OutputIsCopied: False");
+			}
+
+			toCopyLabel.setText("OutputToCopy: " + queue.getOutputToCopy().toString());
+	}
+
+	void paint(Graphics g)
+	{
+			g.setColor(fieldColor);
+			g.fillRect((int)field.getX(), (int)field.getY(), (int)field.getWidth(), (int)field.getHeight());
+	}
+
+	String getPushText()
+	{
+			return pushText.getText();
+	}
+
+	Integer getSpeed()
+	{
+			return speedSlider.getValue();
+	}
 }
