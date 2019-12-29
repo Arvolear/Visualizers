@@ -2,16 +2,27 @@ package Algorithm;
 
 import java.awt.event.*;
 
-class Controller implements ActionListener, WindowListener
+class Controller implements ActionListener, WindowListener, MouseListener
 {
-    private boolean open;
+    private boolean open, start;
     private String what;
 
     Controller()
     {
         open = true;
+		start = false;
         what = new String("");
     }
+
+	synchronized public void mouseClicked(MouseEvent event)
+	{
+		start = true;
+	}
+
+	public void mousePressed(MouseEvent event) {}
+	public void mouseReleased(MouseEvent event) {}
+	public void mouseExited(MouseEvent event) {}
+	public void mouseEntered(MouseEvent event) {}
 
     synchronized public void actionPerformed(ActionEvent event)
     {
@@ -46,4 +57,9 @@ class Controller implements ActionListener, WindowListener
     {
         what = "";
     }
+
+	synchronized boolean isStart()
+	{
+		return start;
+	}
 }

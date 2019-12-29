@@ -1,4 +1,4 @@
-Algorithm = App.class Interface.class Controller.class SpeedController.class Grid.class Sueue.class DrawableStack.class Element.class 
+Algorithm = App.class Pane.class Interface.class Menu.class Controller.class SpeedController.class Grid.class Sueue.class DrawableStack.class Element.class 
 
 CLASSES = Main.class $(addprefix Algorithm/, $(Algorithm))
 
@@ -14,8 +14,14 @@ Main.class: Main.java
 Algorithm/App.class: Algorithm/App.java
 	javac Algorithm/App.java
 
+Algorithm/Pane.class: Algorithm/Pane.java
+	javac Algorithm/Pane.java
+
 Algorithm/Interface.class: Algorithm/Interface.java
 	javac Algorithm/Interface.java
+
+Algorithm/Menu.class: Algorithm/Menu.java
+	javac Algorithm/Menu.java
 
 Algorithm/Controller.class: Algorithm/Controller.java
 	javac Algorithm/Controller.java

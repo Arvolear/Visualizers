@@ -8,30 +8,24 @@ import javax.swing.*;
 class Interface extends JPanel implements Runnable
 {
     private JFrame frame;
+	private Pane pane;
     private Controller controller;
     private Sueue queue;
 
     private Grid grid;
 
-    Interface(Controller controller, Sueue queue)
+    Interface(JFrame frame, Pane pane, Controller controller, Sueue queue)
     {
-        Element.setSpeed(5);
-
+		this.frame = frame;
+		this.pane = pane;
         this.controller = controller;
         this.queue = queue;
 
-        frame = new JFrame();
-        frame.setSize(800, 600);
-		frame.setResizable(false);
-        
-        frame.addWindowListener(controller);
-        frame.setVisible(true);
-
-        grid = new Grid(frame, controller, queue);
+        grid = new Grid(pane, controller, queue);
        
         init();
 
-        frame.add(this);
+		pane.add(this, 10);
     }
 
     void init()

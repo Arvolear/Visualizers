@@ -14,6 +14,9 @@ class Sueue
     private int outputToCopy;
     private boolean copying, outputIsCopied;
 
+	private boolean displayEmpty;
+	private String emptyWord;
+
     private void checkCopy()
     {
         copying = input.size() > output.size();
@@ -96,6 +99,8 @@ class Sueue
 
     Sueue() 
     {
+		displayEmpty = true;
+		emptyWord = new String("Queue is empty");
         outputToCopy = 0;
         copying = outputIsCopied = false;
 
@@ -114,6 +119,8 @@ class Sueue
 
     void push(String s)
     {
+		displayEmpty = false;
+		
 		if (!empty())
 		{
 			front().setOuterColor(new Color(13, 87, 123));
@@ -177,6 +184,10 @@ class Sueue
 		{
 			front().setOuterColor(new Color(119, 55, 196));
 		}
+		else
+		{
+			displayEmpty = true;
+		}
     }
 
     Element front()
@@ -206,13 +217,22 @@ class Sueue
 
     void paint(Graphics g)
     {
-        output.paint(g);
-        outputCopy.paint(g);
-        outputHelper.paint(g);
+		if (displayEmpty)
+		{
+			g.setColor(new Color(230, 230, 230));
+			g.setFont(new Font(Font.SERIF, Font.PLAIN, 40));
+			g.drawString(emptyWord, 140, 280);
+		}
+		else
+		{
+			output.paint(g);
+			outputCopy.paint(g);
+			outputHelper.paint(g);
 
-        tmpStorage.paint(g);
+			tmpStorage.paint(g);
 
-        input.paint(g);
-        inputHelper.paint(g);
-    }
+			input.paint(g);
+			inputHelper.paint(g);
+		}
+	}
 }

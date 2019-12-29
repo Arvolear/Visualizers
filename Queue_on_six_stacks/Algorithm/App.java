@@ -2,6 +2,7 @@ package Algorithm;
 
 import java.util.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class App implements Runnable
 {
@@ -9,14 +10,33 @@ public class App implements Runnable
     private SpeedController speedController;
     private Controller controller;
     private Interface inter;
+	private Menu menu;
+    
+	private JFrame frame;
+	private Pane pane;
 
     public App()
     {
+        frame = new JFrame("Queue on six stacks");
+        frame.setSize(800, 600);
+		frame.setResizable(false);
+        
+
+		pane = new Pane();
+
         controller = new Controller();
         queue = new Sueue();
-        inter = new Interface(controller, queue);
-
+        inter = new Interface(frame, pane, controller, queue);
+		menu = new Menu(frame, pane, controller);
         speedController = new SpeedController(controller, inter.getGrid());
+        
+		frame.addWindowListener(controller);
+        frame.setVisible(true);
+
+		pane.setInter(inter);
+		pane.setMenu(menu);
+
+        frame.add(pane);
     }
 
     public void run()
@@ -29,45 +49,63 @@ public class App implements Runnable
         
         while (controller.isOpen())
         {
-            try
-            {
-                Thread.sleep(5);
-            }
-            catch (InterruptedException ex)
-            {
-                System.out.println("Error: " + ex);
-            }
+			while (true)
+			{
+				try
+				{
+					Thread.sleep(5);
+				}
+				catch (InterruptedException ex)
+				{
+					System.out.println("Error: " + ex);
+				}
 
-            if (controller.getWhat().equals("Push"))
-            {
-                if (inter.getGrid().getPushText().equals(""))
-                {
-                    continue;
-                }
+				if (controller.isStart())
+				{
+					menu.open();
+					break;
+				}
+			}
 
-                queue.push(inter.getGrid().getPushText());
-            }
-            else if (controller.getWhat().equals("Pop"))
-            {
-                if (queue.empty())
-                {
-                    continue;
-                }
+			try
+			{
+				Thread.sleep(5);
+			}
+			catch (InterruptedException ex)
+			{
+				System.out.println("Error: " + ex);
+			}
 
-                queue.pop();
-            }
+			if (controller.getWhat().equals("Push"))
+			{
+				if (inter.getGrid().getPushText().equals(""))
+				{
+					continue;
+				}
 
-            controller.clear();
-        }
+				queue.push(inter.getGrid().getPushText());
+			}
+			else if (controller.getWhat().equals("Pop"))
+			{
+				if (queue.empty())
+				{
+					continue;
+				}
 
-        try
-        {
-            interThread.join();
-            speedThread.join();
-        }
-        catch (InterruptedException ex)
-        {
-            System.out.println("Error: " + ex);
-        }
-    }
+				queue.pop();
+			}
+
+			controller.clear();
+		}
+
+		try
+		{
+			interThread.join();
+			speedThread.join();
+		}
+		catch (InterruptedException ex)
+		{
+			System.out.println("Error: " + ex);
+		}
+	}
 }

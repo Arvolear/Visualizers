@@ -24,58 +24,58 @@ class Grid
     private JSlider speedSlider;
     private JLabel speedLabel;
 
-    private JFrame frame;
-    private Controller controller;
-    private Sueue queue;
+	private JLayeredPane pane;
+	private Controller controller;
+	private Sueue queue;
 
-    Grid(JFrame frame, Controller controller, Sueue queue)
-    {
-        this.frame = frame;
-        this.controller = controller;
-        this.queue = queue;
+	Grid(JLayeredPane pane, Controller controller, Sueue queue)
+	{
+		this.pane = pane;
+		this.controller = controller;
+		this.queue = queue;
 
-        pushPanel = new JPanel();
-        popPanel = new JPanel();
-        fieldColor = new Color(50, 50, 50);
+		pushPanel = new JPanel();
+		popPanel = new JPanel();
+		fieldColor = new Color(50, 50, 50);
 
-        field = new Rectangle(600, 0, 200, 600);
+		field = new Rectangle(600, 0, 200, 600);
 
-        push = new JButton("Push");
-        pop = new JButton("Pop");
+		push = new JButton("Push");
+		pop = new JButton("Pop");
 
-        pushText = new JTextField(9);
-        pushText.setActionCommand("pushText");
+		pushText = new JTextField(9);
+		pushText.setActionCommand("pushText");
 
-        pushLabel = new JLabel("Push an element");
-        popLabel = new JLabel("Pop an element");
-            
-        infoPanel = new JPanel();
-        copyingLabel = new JLabel();
-        isCopiedLabel = new JLabel();
-        toCopyLabel = new JLabel();
+		pushLabel = new JLabel("Push an element");
+		popLabel = new JLabel("Pop an element");
 
-        speedPanel = new JPanel();
-        speedLabel = new JLabel("Speed controller", SwingConstants.CENTER);
-        speedSlider = new JSlider(JSlider.HORIZONTAL, 1, 15, 2);
-    }
+		infoPanel = new JPanel();
+		copyingLabel = new JLabel();
+		isCopiedLabel = new JLabel();
+		toCopyLabel = new JLabel();
 
-    void init()
-    {
-        /* PUSH */
+		speedPanel = new JPanel();
+		speedLabel = new JLabel("Speed controller", SwingConstants.CENTER);
+		speedSlider = new JSlider(JSlider.HORIZONTAL, 1, 15, 4);
+	}
 
-        pushPanel.setBounds(625, 100, 150, 100);
-        pushPanel.setOpaque(false);
+	void init()
+	{
+		/* PUSH */
+
+		pushPanel.setBounds(625, 100, 150, 100);
+		pushPanel.setOpaque(false);
 
 		pushText.addKeyListener(new KeyAdapter() 
-					{
-						public void keyTyped(KeyEvent event) 
-						{ 
-							if (pushText.getText().length() >= 2)
-							{
-								event.consume(); 
-							}
-						}  
-					});
+				{
+					public void keyTyped(KeyEvent event) 
+					{ 
+						if (pushText.getText().length() >= 2)
+						{
+							event.consume(); 
+						}
+					}  
+				});
 
 		pushText.setBackground(new Color(100, 100, 100));
 		pushText.setForeground(new Color(230, 230, 230));
@@ -91,7 +91,7 @@ class Grid
 		pushPanel.add(pushText);
 		pushPanel.add(push);
 
-		frame.add(pushPanel);
+		pane.add(pushPanel, 10);
 
 		/* POP */
 
@@ -108,26 +108,26 @@ class Grid
 		popPanel.add(popLabel);
 		popPanel.add(pop);
 
-		frame.add(popPanel);
+		pane.add(popPanel, 10);
 
 		/* INFO */
 
 		if (queue.getCopying())
 		{
-				copyingLabel.setText("Copying: True");
+			copyingLabel.setText("Copying: True");
 		}
 		else
 		{
-				copyingLabel.setText("Copying: False");
+			copyingLabel.setText("Copying: False");
 		}
 
 		if (queue.getOutputIsCopied())
 		{
-				isCopiedLabel.setText("OutputIsCopied: True");
+			isCopiedLabel.setText("OutputIsCopied: True");
 		}
 		else
 		{
-				isCopiedLabel.setText("OutputIsCopied: False");
+			isCopiedLabel.setText("OutputIsCopied: False");
 		}
 
 		toCopyLabel.setText("OutputToCopy: " + queue.getOutputToCopy().toString());
@@ -148,7 +148,7 @@ class Grid
 		infoPanel.add(isCopiedLabel);
 		infoPanel.add(toCopyLabel);
 
-		frame.add(infoPanel);
+		pane.add(infoPanel, 10);
 
 		/* SPEED */
 
@@ -171,45 +171,45 @@ class Grid
 		speedPanel.add(speedLabel, BorderLayout.PAGE_START);
 		speedPanel.add(speedSlider);
 
-		frame.add(speedPanel);
+		pane.add(speedPanel, 10);
 	}
 
 	void update()
 	{
-			if (queue.getCopying())
-			{
-					copyingLabel.setText("Copying: True");
-			}
-			else
-			{
-					copyingLabel.setText("Copying: False");
-			}
+		if (queue.getCopying())
+		{
+			copyingLabel.setText("Copying: True");
+		}
+		else
+		{
+			copyingLabel.setText("Copying: False");
+		}
 
-			if (queue.getOutputIsCopied())
-			{
-					isCopiedLabel.setText("OutputIsCopied: True");
-			}
-			else
-			{
-					isCopiedLabel.setText("OutputIsCopied: False");
-			}
+		if (queue.getOutputIsCopied())
+		{
+			isCopiedLabel.setText("OutputIsCopied: True");
+		}
+		else
+		{
+			isCopiedLabel.setText("OutputIsCopied: False");
+		}
 
-			toCopyLabel.setText("OutputToCopy: " + queue.getOutputToCopy().toString());
+		toCopyLabel.setText("OutputToCopy: " + queue.getOutputToCopy().toString());
 	}
 
 	void paint(Graphics g)
 	{
-			g.setColor(fieldColor);
-			g.fillRect((int)field.getX(), (int)field.getY(), (int)field.getWidth(), (int)field.getHeight());
+		g.setColor(fieldColor);
+		g.fillRect((int)field.getX(), (int)field.getY(), (int)field.getWidth(), (int)field.getHeight());
 	}
 
 	String getPushText()
 	{
-			return pushText.getText();
+		return pushText.getText();
 	}
 
 	Integer getSpeed()
 	{
-			return speedSlider.getValue();
+		return speedSlider.getValue();
 	}
 }
