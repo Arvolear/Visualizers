@@ -8,8 +8,17 @@ import javax.swing.*;
 class Pane extends JLayeredPane
 {
     private JPanel inter, menu;
+	private boolean start;
 
-    Pane() {}
+    Pane() 
+	{
+		start = false;
+	}
+
+	void setStart()
+	{
+		start = true;
+	}
 	
 	void setMenu(JPanel menu)
 	{
@@ -23,8 +32,12 @@ class Pane extends JLayeredPane
 
     public void paint(Graphics g)
     {
-		inter.paint(g);
-		super.paint(g);
+		if (start)
+		{
+			inter.paint(g);
+			super.paint(g);
+		}
+
 		menu.paint(g);
     }
 }

@@ -21,7 +21,6 @@ public class App implements Runnable
         frame.setSize(800, 600);
 		frame.setResizable(false);
         
-
 		pane = new Pane();
 
         controller = new Controller();
@@ -62,7 +61,10 @@ public class App implements Runnable
 
 				if (controller.isStart())
 				{
+					inter.unhide();
+					pane.setStart();
 					menu.open();
+
 					break;
 				}
 			}
@@ -78,21 +80,17 @@ public class App implements Runnable
 
 			if (controller.getWhat().equals("Push"))
 			{
-				if (inter.getGrid().getPushText().equals(""))
+				if (!inter.getGrid().getPushText().equals(""))
 				{
-					continue;
+					queue.push(inter.getGrid().getPushText());
 				}
-
-				queue.push(inter.getGrid().getPushText());
 			}
 			else if (controller.getWhat().equals("Pop"))
 			{
-				if (queue.empty())
+				if (!queue.empty())
 				{
-					continue;
+					queue.pop();
 				}
-
-				queue.pop();
 			}
 
 			controller.clear();

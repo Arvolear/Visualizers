@@ -22,16 +22,20 @@ class Interface extends JPanel implements Runnable
         this.queue = queue;
 
         grid = new Grid(pane, controller, queue);
-       
-        init();
-
-		pane.add(this, 10);
+		
+		init();
     }
 
     void init()
     {
         grid.init();
+		pane.add(this, 10);
     }
+
+	void unhide()
+	{
+		grid.unhide();
+	}
 
     public void paint(Graphics g)
     {

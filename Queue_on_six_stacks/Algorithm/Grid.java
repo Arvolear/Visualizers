@@ -91,6 +91,8 @@ class Grid
 		pushPanel.add(pushText);
 		pushPanel.add(push);
 
+		pushPanel.setVisible(false);
+
 		pane.add(pushPanel, 10);
 
 		/* POP */
@@ -107,6 +109,8 @@ class Grid
 
 		popPanel.add(popLabel);
 		popPanel.add(pop);
+		
+		popPanel.setVisible(false);
 
 		pane.add(popPanel, 10);
 
@@ -147,6 +151,8 @@ class Grid
 		infoPanel.add(copyingLabel);
 		infoPanel.add(isCopiedLabel);
 		infoPanel.add(toCopyLabel);
+		
+		infoPanel.setVisible(false);
 
 		pane.add(infoPanel, 10);
 
@@ -170,6 +176,8 @@ class Grid
 
 		speedPanel.add(speedLabel, BorderLayout.PAGE_START);
 		speedPanel.add(speedSlider);
+		
+		speedPanel.setVisible(false);
 
 		pane.add(speedPanel, 10);
 	}
@@ -195,6 +203,14 @@ class Grid
 		}
 
 		toCopyLabel.setText("OutputToCopy: " + queue.getOutputToCopy().toString());
+	}
+
+	void unhide()
+	{
+		pushPanel.setVisible(true);
+		popPanel.setVisible(true);
+		infoPanel.setVisible(true);
+		speedPanel.setVisible(true);
 	}
 
 	void paint(Graphics g)
