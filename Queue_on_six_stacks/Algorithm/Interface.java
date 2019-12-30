@@ -11,15 +11,17 @@ class Interface extends JPanel implements Runnable
 	private Pane pane;
     private Controller controller;
     private Sueue queue;
+	private Pseudocode pseudocode;
 
     private Grid grid;
 
-    Interface(JFrame frame, Pane pane, Controller controller, Sueue queue)
+    Interface(JFrame frame, Pane pane, Controller controller, Sueue queue, Pseudocode pseudocode)
     {
 		this.frame = frame;
 		this.pane = pane;
         this.controller = controller;
         this.queue = queue;
+		this.pseudocode = pseudocode;
 
         grid = new Grid(pane, controller, queue);
 		
@@ -29,6 +31,8 @@ class Interface extends JPanel implements Runnable
     void init()
     {
         grid.init();
+		pseudocode.init();
+
 		pane.add(this, 10);
     }
 

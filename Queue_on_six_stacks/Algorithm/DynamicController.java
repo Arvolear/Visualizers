@@ -1,12 +1,14 @@
 package Algorithm;
 
-class SpeedController implements Runnable
+class DynamicController implements Runnable
 {
     private Controller controller;
+	private Pseudocode pseudocode;
     private Grid grid;
 
-    SpeedController(Controller controller, Grid grid) 
+    DynamicController(Controller controller, Grid grid, Pseudocode pseudocode) 
     {
+		this.pseudocode = pseudocode;
         this.controller = controller;
         this.grid = grid;
     }
@@ -25,6 +27,16 @@ class SpeedController implements Runnable
             }
             
             Element.setSpeed(grid.getSpeed());
+
+			boolean show = controller.isShowCode();
+
+			pseudocode.toggle(show);
+			grid.getBox().setSelected(show);
+
+			if (controller.isShowCode() != grid.getBox().isSelected())
+			{
+				controller.setShowCode(false);
+			}
         }
     }
 }

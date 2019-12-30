@@ -221,7 +221,7 @@ class Sueue
 		{
 			g.setColor(new Color(230, 230, 230));
 			g.setFont(new Font(Font.SERIF, Font.PLAIN, 40));
-			g.drawString(emptyWord, 140, 280);
+			g.drawString(emptyWord, 135, 280);
 		}
 		else
 		{

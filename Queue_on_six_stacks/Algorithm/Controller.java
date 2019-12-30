@@ -1,18 +1,26 @@
 package Algorithm;
 
 import java.awt.event.*;
+import javax.swing.*;
 
-class Controller implements ActionListener, WindowListener, MouseListener
+class Controller implements ActionListener, WindowListener, MouseListener, ItemListener
 {
-    private boolean open, start;
+    private boolean open, start, showCode;
     private String what;
 
     Controller()
     {
         open = true;
 		start = false;
+		showCode = false;
+
         what = new String("");
     }
+
+	synchronized public void itemStateChanged(ItemEvent event)
+	{
+		showCode = showCode ? false : true;
+	}
 
 	synchronized public void mouseClicked(MouseEvent event)
 	{
@@ -29,37 +37,56 @@ class Controller implements ActionListener, WindowListener, MouseListener
         what = event.getActionCommand();
     }
 
-    public void windowClosing(WindowEvent event) 
+    synchronized public void windowClosing(WindowEvent event) 
     {
-        open = false;
+        JFrame frame = (JFrame)event.getSource();
+		String name = frame.getTitle();
+		
+		if (name.equals("Queue on six stacks"))
+		{
+			open = false;
+			System.exit(0);
+		}
+		else if (name.equals("Pseudocode"))
+		{
+			showCode = false;
+		}
+	}
 
-        System.exit(0);
-    }
+	public void windowOpened(WindowEvent event) {}
+	public void windowClosed(WindowEvent event) {}
+	public void windowIconified(WindowEvent event) {}
+	public void windowDeiconified(WindowEvent event) {}
+	public void windowActivated(WindowEvent event) {}
+	public void windowDeactivated(WindowEvent event) {}
 
-    public void windowOpened(WindowEvent event) {}
-    public void windowClosed(WindowEvent event) {}
-    public void windowIconified(WindowEvent event) {}
-    public void windowDeiconified(WindowEvent event) {}
-    public void windowActivated(WindowEvent event) {}
-    public void windowDeactivated(WindowEvent event) {}
+	synchronized void setShowCode(boolean show)
+	{
+		showCode = show;
+	}
 
-    boolean isOpen()
-    {
-        return open;
-    }
+	boolean isOpen()
+	{
+		return open;
+	}
 
-    synchronized String getWhat()
-    {
-        return what;
-    }
+	synchronized String getWhat()
+	{
+		return what;
+	}
 
-    synchronized void clear()
-    {
-        what = "";
-    }
+	synchronized void clear()
+	{
+		what = "";
+	}
 
 	synchronized boolean isStart()
 	{
 		return start;
+	}
+
+	synchronized boolean isShowCode()
+	{
+		return showCode;
 	}
 }

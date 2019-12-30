@@ -13,7 +13,10 @@ class Grid
     private JPanel popPanel;
     private JPanel infoPanel;
     private JPanel speedPanel;
+    private JPanel codePanel;
      
+	private JCheckBox box;
+
     private JButton push, pop;
     
     private JTextField pushText;
@@ -57,6 +60,9 @@ class Grid
 		speedPanel = new JPanel();
 		speedLabel = new JLabel("Speed controller", SwingConstants.CENTER);
 		speedSlider = new JSlider(JSlider.HORIZONTAL, 1, 15, 4);
+
+		codePanel = new JPanel();
+		box = new JCheckBox("Show pseudocode");
 	}
 
 	void init()
@@ -180,6 +186,24 @@ class Grid
 		speedPanel.setVisible(false);
 
 		pane.add(speedPanel, 10);
+
+		/* CODE */
+
+		codePanel.setBounds(625, 300, 150, 100);
+		codePanel.setLayout(new BorderLayout());
+		codePanel.setOpaque(false);
+
+		box.addItemListener(controller);
+		box.setActionCommand("Code");
+
+		box.setBackground(new Color(50, 50, 50));
+		box.setForeground(new Color(230, 230, 230));
+
+		codePanel.add(box, BorderLayout.PAGE_START);
+
+		codePanel.setVisible(false);
+
+		pane.add(codePanel, 10);
 	}
 
 	void update()
@@ -211,12 +235,18 @@ class Grid
 		popPanel.setVisible(true);
 		infoPanel.setVisible(true);
 		speedPanel.setVisible(true);
+		codePanel.setVisible(true);
 	}
 
 	void paint(Graphics g)
 	{
 		g.setColor(fieldColor);
 		g.fillRect((int)field.getX(), (int)field.getY(), (int)field.getWidth(), (int)field.getHeight());
+	}
+
+	JCheckBox getBox()
+	{
+		return box;
 	}
 
 	String getPushText()

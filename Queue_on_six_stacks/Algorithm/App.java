@@ -7,10 +7,11 @@ import javax.swing.*;
 public class App implements Runnable
 {
     private Sueue queue;
-    private SpeedController speedController;
+    private DynamicController dynamicController;
     private Controller controller;
     private Interface inter;
 	private Menu menu;
+	private Pseudocode pseudocode;
     
 	private JFrame frame;
 	private Pane pane;
@@ -19,15 +20,17 @@ public class App implements Runnable
     {
         frame = new JFrame("Queue on six stacks");
         frame.setSize(800, 600);
+		frame.setLocation(100, 50);
 		frame.setResizable(false);
         
 		pane = new Pane();
 
         controller = new Controller();
+		pseudocode = new Pseudocode(frame, controller);
         queue = new Sueue();
-        inter = new Interface(frame, pane, controller, queue);
+        inter = new Interface(frame, pane, controller, queue, pseudocode);
 		menu = new Menu(frame, pane, controller);
-        speedController = new SpeedController(controller, inter.getGrid());
+        dynamicController = new DynamicController(controller, inter.getGrid(), pseudocode);
         
 		frame.addWindowListener(controller);
         frame.setVisible(true);
@@ -43,8 +46,8 @@ public class App implements Runnable
         Thread interThread = new Thread(inter, "Interface");
         interThread.start();
 
-        Thread speedThread = new Thread(speedController, "Speed");
-        speedThread.start();
+        Thread dynamicThread = new Thread(dynamicController, "Dynamic");
+        dynamicThread.start();
         
         while (controller.isOpen())
         {
@@ -99,7 +102,7 @@ public class App implements Runnable
 		try
 		{
 			interThread.join();
-			speedThread.join();
+			dynamicThread.join();
 		}
 		catch (InterruptedException ex)
 		{
