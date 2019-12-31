@@ -27,6 +27,7 @@ class DynamicController implements Runnable
             }
             
             Element.setSpeed(grid.getSpeed());
+			pseudocode.setSpeed(grid.getSpeed());
 
 			boolean show = controller.isShowCode();
 

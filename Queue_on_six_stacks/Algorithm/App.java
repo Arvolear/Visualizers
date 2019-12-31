@@ -27,7 +27,7 @@ public class App implements Runnable
 
         controller = new Controller();
 		pseudocode = new Pseudocode(frame, controller);
-        queue = new Sueue();
+        queue = new Sueue(pseudocode);
         inter = new Interface(frame, pane, controller, queue, pseudocode);
 		menu = new Menu(frame, pane, controller);
         dynamicController = new DynamicController(controller, inter.getGrid(), pseudocode);

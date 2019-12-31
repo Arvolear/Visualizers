@@ -48,6 +48,8 @@ class Interface extends JPanel implements Runnable
 
         queue.paint(g);
         grid.paint(g);
+
+		pseudocode.update();
     }
 
     public void run()
