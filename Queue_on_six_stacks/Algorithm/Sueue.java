@@ -126,11 +126,15 @@ class Sueue
             DrawableStack tmp;
 
 			pseudocode.showLine(40);
+
+			input.swap(inputHelper);
             tmp = input;
             input = inputHelper;
             inputHelper = tmp;
 
 			pseudocode.showLine(41);
+			
+			outputCopy.swap(outputHelper);
             tmp = outputCopy;
             outputCopy = outputHelper;
             outputHelper = tmp;
@@ -147,12 +151,12 @@ class Sueue
         outputToCopy = 0;
         copying = outputIsCopied = false;
 
-        output = new DrawableStack("Output", 20, 30);
-        tmpStorage = new DrawableStack("TmpStorage", 20, 125);
-        outputCopy = new DrawableStack("OutputCopy", 20, 220);
-        outputHelper = new DrawableStack("OutputHelper", 20, 315);
-        input = new DrawableStack("Input", 20, 410);
-        inputHelper = new DrawableStack("InputHelper", 20, 505);
+        output = new DrawableStack("Output (R)", 20, 30);
+        tmpStorage = new DrawableStack("TmpStorage (S)", 20, 125);
+        outputCopy = new DrawableStack("OutputCopy (RC)", 20, 220);
+        outputHelper = new DrawableStack("OutputHelper (RC1)", 20, 315);
+        input = new DrawableStack("Input (L)", 20, 410);
+        inputHelper = new DrawableStack("InputHelper (L1)", 20, 505);
 
 		this.pseudocode = pseudocode;
     }

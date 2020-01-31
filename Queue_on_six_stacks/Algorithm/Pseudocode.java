@@ -44,7 +44,7 @@ class Pseudocode extends JPanel implements MouseWheelListener
 
 	public void mouseWheelMoved(MouseWheelEvent event)
 	{
-		scrollBar.setValue(scrollBar.getValue() + (event.getWheelRotation() * 8));
+		scrollBar.setValue(scrollBar.getValue() + (event.getWheelRotation() * 10));
 	}
 
 	void init()
@@ -77,7 +77,7 @@ class Pseudocode extends JPanel implements MouseWheelListener
 		code.add("16.         limit--;");
 		code.add("17.     }");
 		code.add("18.");
-		code.add("19.     while (limit > 0 && !input.empty() {)");
+		code.add("19.     while (limit > 0 && !input.empty()) {");
 		code.add("20.         copied = true;");
 		code.add("21.         elem = input.top();");
 		code.add("22.         output.push(elem);");

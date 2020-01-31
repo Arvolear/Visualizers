@@ -23,6 +23,11 @@ class Element
         Element.speed = speed;
     }
 
+	static int getSpeed()
+	{
+		return Element.speed;
+	}
+
     Element(int posx, int posy, int width, int height, String heldNumber)
     {
         thisIndex = lastIndex;
@@ -124,7 +129,7 @@ class Element
     {
         int localSpeed = speed;
 
-        float steps = (float)Math.abs(toy - posy) / (float)speed;
+        float steps = (float)Math.abs(toy - posy) / (float)localSpeed;
 
         int deltay = toy - posy;
         float stepy = (float)deltay / steps;
@@ -177,6 +182,22 @@ class Element
         inner.setLocation(posx + (int)(width * 0.1), posy + (int)(height * 0.1));
     }
 
+	void setPosx(int posx)
+	{
+		this.posx = posx;
+            
+		outer.setLocation(posx, posy);
+        inner.setLocation(posx + (int)(width * 0.1), posy + (int)(height * 0.1));
+	}
+	
+	void setPosy(int posy)
+	{
+		this.posy = posy;
+		
+		outer.setLocation(posx, posy);
+        inner.setLocation(posx + (int)(width * 0.1), posy + (int)(height * 0.1));
+	}
+
     int getPosx()
     {
         return posx;
@@ -202,7 +223,7 @@ class Element
         return outerColor;
     }
 
-    Color etInnerColor()
+    Color getInnerColor()
     {
         return innerColor;
     }
