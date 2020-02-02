@@ -30,14 +30,14 @@ class DrawableStack
 
     private int amount;
     private Node head;
-    private int posx, posy;
+    private int initx, inity, emptyx, emptyy, posx, posy;
     private String name;
     private int fontSize;
 
     DrawableStack(String name, int posx, int posy) 
     {
-        this.posx = posx;
-        this.posy = posy;
+        this.posx = initx = emptyx = posx;
+        this.posy = inity = emptyy = posy;
         this.name = name;
 
         fontSize = 15;
@@ -84,44 +84,22 @@ class DrawableStack
 
 			posy += stepy;
 			stack.posy -= stepy;
-
-			Node cur = head;
-			Node stCur = stack.head;
-
-			while (cur != null)
-			{
-				cur.posy += stepy;
-				cur.val.setPosy(cur.posy);
-				cur = cur.next;
-			}
-
-			while (stCur != null)
-			{
-				stCur.posy -= stepy;
-				stCur.val.setPosy(stCur.posy);
-				stCur = stCur.next;
-			}
 		}
+
+		Node tmpn = stack.head;
+		stack.head = head;
+		head = tmpn;
+
+		int tmpi = stack.amount;
+		stack.amount = amount;
+		amount = tmpi;
 
 		posy = toy;
 		stack.posy = fromy;
-		
-		Node cur = head;
-		Node stCur = stack.head;
 
-		while (cur != null)
-		{
-			cur.posy = toy;
-			cur.val.setPosy(cur.posy);
-			cur = cur.next;
-		}
-
-		while (stCur != null)
-		{
-			stCur.posy = fromy;
-			stCur.val.setPosy(stCur.posy);
-			stCur = stCur.next;
-		}
+		tmpi = stack.emptyy;
+		stack.emptyy = emptyy;
+		emptyy = tmpi;
 	}
 
 	void push(Element val)
@@ -174,6 +152,15 @@ class DrawableStack
 		return amount == 0 ? true : false;
 	}
 
+	void clear()
+	{
+		amount = 0;
+		head = null;
+
+		emptyy = inity;
+		posy = inity;
+	}
+
 	private void paint(Graphics g, Node node)
 	{
 		if (node == null)
@@ -191,6 +178,12 @@ class DrawableStack
 		g.setColor(new Color(230, 230, 230));
 		g.setFont(new Font(Font.SERIF, Font.PLAIN, fontSize));
 		g.drawString(name, posx, posy - fontSize / 3);
+		
+		if (amount == 0)
+		{
+			g.setFont(new Font(Font.SERIF, Font.PLAIN, fontSize - 2));
+			g.drawString("Empty", emptyx + 15, emptyy + 15 + fontSize);
+		}
 
 		paint(g, head);
 	}

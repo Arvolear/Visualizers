@@ -14,14 +14,15 @@ class Grid
     private JPanel infoPanel;
     private JPanel speedPanel;
     private JPanel codePanel;
+    private JPanel clearPanel;
      
 	private JCheckBox box;
 
-    private JButton push, pop;
+    private JButton push, pop, clear;
     
     private JTextField pushText;
     
-    private JLabel pushLabel, popLabel;
+    private JLabel pushLabel, popLabel, clearLabel;
     private JLabel copyingLabel, isCopiedLabel, toCopyLabel;
 
     private JSlider speedSlider;
@@ -39,18 +40,21 @@ class Grid
 
 		pushPanel = new JPanel();
 		popPanel = new JPanel();
+		clearPanel = new JPanel();
 		fieldColor = new Color(50, 50, 50);
 
 		field = new Rectangle(600, 0, 200, 600);
 
 		push = new JButton("Push");
 		pop = new JButton("Pop");
+		clear = new JButton("Clear");
 
 		pushText = new JTextField(9);
 		pushText.setActionCommand("pushText");
 
 		pushLabel = new JLabel("Push an element");
 		popLabel = new JLabel("Pop an element");
+		clearLabel = new JLabel("Clear the queue");
 
 		infoPanel = new JPanel();
 		copyingLabel = new JLabel();
@@ -119,6 +123,25 @@ class Grid
 		popPanel.setVisible(false);
 
 		pane.add(popPanel, 10);
+		
+		/* CLEAR */
+
+		clearPanel.setBounds(625, 280, 150, 100);
+		clearPanel.setOpaque(false);
+
+		clear.addActionListener(controller);
+		clear.setBackground(new Color(100, 100, 100));
+		clear.setForeground(new Color(230, 230, 230));
+
+		clearLabel.setBackground(new Color(100, 100, 100));
+		clearLabel.setForeground(new Color(230, 230, 230));
+
+		clearPanel.add(clearLabel);
+		clearPanel.add(clear);
+		clearPanel.setVisible(false);
+
+		pane.add(clearPanel, 10);
+
 
 		/* INFO */
 
@@ -189,7 +212,7 @@ class Grid
 
 		/* CODE */
 
-		codePanel.setBounds(625, 300, 150, 100);
+		codePanel.setBounds(625, 360, 150, 100);
 		codePanel.setLayout(new BorderLayout());
 		codePanel.setOpaque(false);
 
@@ -233,6 +256,7 @@ class Grid
 	{
 		pushPanel.setVisible(true);
 		popPanel.setVisible(true);
+		clearPanel.setVisible(true);
 		infoPanel.setVisible(true);
 		speedPanel.setVisible(true);
 		codePanel.setVisible(true);

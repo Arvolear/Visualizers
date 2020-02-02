@@ -95,6 +95,13 @@ public class App implements Runnable
 					queue.pop();
 				}
 			}
+			else if (controller.getWhat().equals("Clear"))
+			{
+				if (!queue.empty())
+				{
+					queue.clear();
+				}
+			}
 
 			controller.clear();
 		}

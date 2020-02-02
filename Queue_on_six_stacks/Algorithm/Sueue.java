@@ -126,139 +126,131 @@ class Sueue
             DrawableStack tmp;
 
 			pseudocode.showLine(40);
-
 			input.swap(inputHelper);
-            tmp = input;
-            input = inputHelper;
-            inputHelper = tmp;
 
 			pseudocode.showLine(41);
-			
 			outputCopy.swap(outputHelper);
-            tmp = outputCopy;
-            outputCopy = outputHelper;
-            outputHelper = tmp;
-        }
+		}
 
 		pseudocode.showLine(43);
-        copying = !tmpStorage.empty();
-    }
+		copying = !tmpStorage.empty();
+	}
 
-    Sueue(Pseudocode pseudocode) 
-    {
+	Sueue(Pseudocode pseudocode) 
+	{
 		displayEmpty = true;
 		emptyWord = new String("Queue is empty");
-        outputToCopy = 0;
-        copying = outputIsCopied = false;
+		outputToCopy = 0;
+		copying = outputIsCopied = false;
 
-        output = new DrawableStack("Output (R)", 20, 30);
-        tmpStorage = new DrawableStack("TmpStorage (S)", 20, 125);
-        outputCopy = new DrawableStack("OutputCopy (RC)", 20, 220);
-        outputHelper = new DrawableStack("OutputHelper (RC1)", 20, 315);
-        input = new DrawableStack("Input (L)", 20, 410);
-        inputHelper = new DrawableStack("InputHelper (L1)", 20, 505);
+		output = new DrawableStack("Output* (R)", 20, 30);
+		tmpStorage = new DrawableStack("TmpStorage* (S)", 20, 125);
+		outputCopy = new DrawableStack("OutputCopy* (RC)", 20, 220);
+		outputHelper = new DrawableStack("OutputHelper* (RC1)", 20, 315);
+		input = new DrawableStack("Input* (L)", 20, 410);
+		inputHelper = new DrawableStack("InputHelper* (L1)", 20, 505);
 
 		this.pseudocode = pseudocode;
-    }
+	}
 
-    boolean empty()
-    {
-        return !copying && output.empty();   
-    }
+	boolean empty()
+	{
+		return !copying && output.empty();   
+	}
 
-    void push(String s)
-    {
+	void push(String s)
+	{
 		pseudocode.showLine(46);
-		
+
 		displayEmpty = false;
-		
+
 		if (!empty())
 		{
 			front().setOuterColor(new Color(13, 87, 123));
 		}
 
-        Element elem = new Element(500, 300, 50, 50, s);
-	
+		Element elem = new Element(500, 300, 50, 50, s);
+
 		pseudocode.showLine(47);
-        if (!copying)
-        {	
+		if (!copying)
+		{	
 			pseudocode.showLine(48);
-            input.push(elem);
+			input.push(elem);
 
 			pseudocode.showLine(49);
-            if (!outputHelper.empty())
-            {
+			if (!outputHelper.empty())
+			{
 				pseudocode.showLine(50);
-                outputHelper.pop();
-            }
+				outputHelper.pop();
+			}
 
 			pseudocode.showLine(52);
-            checkCopy();
-        }
-        else
-        {
+			checkCopy();
+		}
+		else
+		{
 			pseudocode.showLine(54);
-			
+
 			pseudocode.showLine(55);
-            inputHelper.push(elem);
+			inputHelper.push(elem);
 
 			pseudocode.showLine(56);
-            performCopy();
-        }
+			performCopy();
+		}
 
 		front().setOuterColor(new Color(119, 55, 196));
 		pseudocode.showLine(-1);
-    }
+	}
 
-    void pop()
-    {
+	void pop()
+	{
 		pseudocode.showLine(60);
 
 		pseudocode.showLine(61);
-        if (!copying)
-        {
+		if (!copying)
+		{
 			pseudocode.showLine(62);
-            output.pop();
+			output.pop();
 			pseudocode.showLine(63);
-            outputCopy.pop();
+			outputCopy.pop();
 
 			pseudocode.showLine(64);
-            if (!outputHelper.empty())
-            {
+			if (!outputHelper.empty())
+			{
 				pseudocode.showLine(65);
-                outputHelper.pop();
-            }
+				outputHelper.pop();
+			}
 
 			pseudocode.showLine(67);
-            checkCopy();
-        }
-        else
-        {
+			checkCopy();
+		}
+		else
+		{
 			pseudocode.showLine(69);
-			
+
 			pseudocode.showLine(70);
-            outputCopy.pop();
+			outputCopy.pop();
 
 			pseudocode.showLine(71);
-            if (outputToCopy > 0)
-            {
+			if (outputToCopy > 0)
+			{
 				pseudocode.showLine(72);
-                outputToCopy--;
-            }
-            else
-            {
+				outputToCopy--;
+			}
+			else
+			{
 				pseudocode.showLine(74);
 
 				pseudocode.showLine(75);
-                output.pop();
+				output.pop();
 				pseudocode.showLine(76);
-                outputHelper.pop();
-            }
+				outputHelper.pop();
+			}
 
 			pseudocode.showLine(78);
-            performCopy();
-        }
-		
+			performCopy();
+		}
+
 		if (!empty())
 		{
 			front().setOuterColor(new Color(119, 55, 196));
@@ -267,37 +259,53 @@ class Sueue
 		{
 			displayEmpty = true;
 		}
-		
+
 		pseudocode.showLine(-1);
-    }
+	}
 
-    Element front()
-    {
-        if (!copying)
-        {
-            return output.top();
-        }
+	Element front()
+	{
+		if (!copying)
+		{
+			return output.top();
+		}
 
-        return outputCopy.top();
-    }
+		return outputCopy.top();
+	}
 
-    Integer getOutputToCopy()
-    {
-        return outputToCopy;
-    }
+	void clear()
+	{
+		displayEmpty = true;
+		outputToCopy = 0;
+		copying = outputIsCopied = false;
 
-    boolean getCopying()
-    {
-        return copying;
-    }
+		output.clear();
+		tmpStorage.clear();
+		outputCopy.clear();
+		outputHelper.clear();
+		input.clear();
+		inputHelper.clear();
 
-    boolean getOutputIsCopied()
-    {
-        return outputIsCopied;
-    }
+		displayEmpty = true;
+	}
 
-    void paint(Graphics g)
-    {
+	Integer getOutputToCopy()
+	{
+		return outputToCopy;
+	}
+
+	boolean getCopying()
+	{
+		return copying;
+	}
+
+	boolean getOutputIsCopied()
+	{
+		return outputIsCopied;
+	}
+
+	void paint(Graphics g)
+	{
 		if (displayEmpty)
 		{
 			g.setColor(new Color(230, 230, 230));
