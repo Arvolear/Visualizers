@@ -1,6 +1,7 @@
 package Algorithm;
 
 import java.awt.*;
+import java.util.Vector;
 
 class DrawableStack
 {
@@ -152,6 +153,19 @@ class DrawableStack
 		return amount == 0 ? true : false;
 	}
 
+	void prepClear(Vector < Thread > clearer)
+	{
+		Node cur = head;
+		
+		while (cur != null)
+		{
+			clearer.add(new Thread(new ElementClearer(cur.val)));
+			clearer.get(clearer.size() - 1).start();
+
+			cur = cur.next;
+		}
+	}
+
 	void clear()
 	{
 		amount = 0;
@@ -171,6 +185,11 @@ class DrawableStack
 		paint(g, node.next);
 
 		node.val.paint(g);
+	}
+
+	Node getHead()
+	{
+		return head;
 	}
 
 	void paint(Graphics g)

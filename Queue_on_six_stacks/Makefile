@@ -1,4 +1,4 @@
-Algorithm = App.class Pane.class Interface.class Menu.class Controller.class DynamicController.class Grid.class Sueue.class Pseudocode.class DrawableStack.class Element.class 
+Algorithm = App.class Pane.class Interface.class Menu.class Controller.class DynamicController.class Grid.class Sueue.class Pseudocode.class DrawableStack.class ElementClearer.class Element.class 
 
 CLASSES = Main.class $(addprefix Algorithm/, $(Algorithm))
 
@@ -40,6 +40,9 @@ Algorithm/Pseudocode.class: Algorithm/Pseudocode.java
 
 Algorithm/DrawableStack.class: Algorithm/DrawableStack.java
 	javac Algorithm/DrawableStack.java
+
+Algorithm/ElementClearer.class: Algorithm/ElementClearer.java
+	javac Algorithm/ElementClearer.java
 
 Algorithm/Element.class: Algorithm/Element.java
 	javac Algorithm/Element.java

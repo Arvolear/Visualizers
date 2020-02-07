@@ -9,7 +9,7 @@ class Element
     private static int lastIndex = 0;
     private int thisIndex;
 
-    private int posx, posy;
+    private double posx, posy;
     private int width, height;
 
     private Rectangle outer, inner;
@@ -91,7 +91,7 @@ class Element
 
         float steps = (float)Math.abs(tox - posx) / (float)speed;
 
-        int deltax = tox - posx;
+        int deltax = tox - (int)posx;
         float stepx = (float)deltax / steps;
     
         for (int i = 0; i < (int)steps; i++)
@@ -101,7 +101,7 @@ class Element
                 i = 0;
         
                 steps = (float)Math.abs(tox - posx) / (float)speed;
-                deltax = tox - posx;
+                deltax = tox - (int)posx;
                 stepx = (float)deltax / steps;
 
                 localSpeed = speed;
@@ -118,8 +118,8 @@ class Element
 
             posx += stepx;
             
-            outer.setLocation(posx, posy);
-            inner.setLocation(posx + (int)(width * 0.1), posy + (int)(height * 0.1));
+            outer.setLocation((int)posx, (int)posy);
+            inner.setLocation((int)posx + (int)(width * 0.1), (int)posy + (int)(height * 0.1));
         }
 
         posx = tox; 
@@ -131,7 +131,7 @@ class Element
 
         float steps = (float)Math.abs(toy - posy) / (float)localSpeed;
 
-        int deltay = toy - posy;
+        int deltay = toy - (int)posy;
         float stepy = (float)deltay / steps;
 
         for (int i = 0; i < (int)steps; i++)
@@ -141,7 +141,7 @@ class Element
                 i = 0;
         
                 steps = (float)Math.abs(toy - posy) / (float)speed;
-                deltay = toy - posy;
+                deltay = toy - (int)posy;
                 stepy = (float)deltay / steps;
 
                 localSpeed = speed;
@@ -158,88 +158,140 @@ class Element
 
             posy += stepy;
             
-            outer.setLocation(posx, posy);
-            inner.setLocation(posx + (int)(width * 0.1), posy + (int)(height * 0.1));
+            outer.setLocation((int)posx, (int)posy);
+            inner.setLocation((int)posx + (int)(width * 0.1), (int)posy + (int)(height * 0.1));
         }
 
         posy = toy; 
     }
 
-    void move(int tox, int toy)
-    {
-        if (tox < posx)
+	void moveNoAxis(int tox, int toy)
+	{
+        int localSpeed = speed;
+
+        double steps = Math.max(Math.abs(tox - posx) / (double)speed, Math.abs(toy - posy) / (double)speed);
+
+        int deltax = tox - (int)posx;
+        int deltay = toy - (int)posy;
+        
+		double stepx = (double)deltax / steps;
+		double stepy = (double)deltay / steps;
+
+        for (int i = 0; i < (int)steps; i++)
         {
-            goYDirection(toy);
-            goXDirection(tox);
-        }
-        else
-        {
-            goXDirection(tox);
-            goYDirection(toy);
+            if (localSpeed != speed)
+            {
+                i = 0;
+        
+        		steps = Math.max(Math.abs(tox - posx) / (double)speed, Math.abs(toy - posy) / (double)speed);
+                
+				deltax = tox - (int)posx;
+				deltay = toy - (int)posy;
+
+                stepx = (double)deltax / steps;
+                stepy = (double)deltay / steps;
+
+                localSpeed = speed;
+            }
+
+            try
+            {
+                Thread.sleep(12);
+            }
+            catch (InterruptedException ex)
+            {
+                System.out.println("Error: " + ex);
+            }
+
+            posx += stepx;
+            posy += stepy;
+            
+            outer.setLocation((int)posx, (int)posy);
+            inner.setLocation((int)posx + (int)(width * 0.1), (int)posy + (int)(height * 0.1));
         }
 
-        outer.setLocation(posx, posy);
-        inner.setLocation(posx + (int)(width * 0.1), posy + (int)(height * 0.1));
-    }
+        posx = tox;
+        posy = toy;
+        
+		outer.setLocation((int)posx, (int)posy);
+		inner.setLocation((int)posx + (int)(width * 0.1), (int)posy + (int)(height * 0.1));
+	}
+
+	void move(int tox, int toy)
+	{
+		if (tox < posx)
+		{
+			goYDirection(toy);
+			goXDirection(tox);
+		}
+		else
+		{
+			goXDirection(tox);
+			goYDirection(toy);
+		}
+
+		outer.setLocation((int)posx, (int)posy);
+		inner.setLocation((int)posx + (int)(width * 0.1), (int)posy + (int)(height * 0.1));
+	}
 
 	void setPosx(int posx)
 	{
 		this.posx = posx;
-            
-		outer.setLocation(posx, posy);
-        inner.setLocation(posx + (int)(width * 0.1), posy + (int)(height * 0.1));
+
+		outer.setLocation(posx, (int)posy);
+		inner.setLocation(posx + (int)(width * 0.1), (int)posy + (int)(height * 0.1));
 	}
-	
+
 	void setPosy(int posy)
 	{
 		this.posy = posy;
-		
-		outer.setLocation(posx, posy);
-        inner.setLocation(posx + (int)(width * 0.1), posy + (int)(height * 0.1));
+
+		outer.setLocation((int)posx, posy);
+		inner.setLocation((int)posx + (int)(width * 0.1), posy + (int)(height * 0.1));
 	}
 
-    int getPosx()
-    {
-        return posx;
-    }
+	int getPosx()
+	{
+		return (int)posx;
+	}
 
-    int getPosy()
-    {
-        return posy;
-    }
+	int getPosy()
+	{
+		return (int)posy;
+	}
 
-    int getWidth()
-    {
-        return width;
-    }
+	int getWidth()
+	{
+		return width;
+	}
 
-    int getHeight()
-    {
-        return height;
-    }
+	int getHeight()
+	{
+		return height;
+	}
 
-    Color getOuterColor()
-    {
-        return outerColor;
-    }
+	Color getOuterColor()
+	{
+		return outerColor;
+	}
 
-    Color getInnerColor()
-    {
-        return innerColor;
-    }
+	Color getInnerColor()
+	{
+		return innerColor;
+	}
 
-    void paint(Graphics g)
-    {
-        g.setColor(outerColor);
-        g.fillRect((int)outer.getX(), (int)outer.getY(), (int)outer.getWidth(), (int)outer.getHeight());
+	void paint(Graphics g)
+	{
+		g.setColor(outerColor);
+		g.fillRect((int)outer.getX(), (int)outer.getY(), (int)outer.getWidth(), (int)outer.getHeight());
 
-        g.setColor(innerColor);
-        g.fillRect((int)inner.getX(), (int)inner.getY(), (int)inner.getWidth(), (int)inner.getHeight());
+		g.setColor(innerColor);
+		g.fillRect((int)inner.getX(), (int)inner.getY(), (int)inner.getWidth(), (int)inner.getHeight());
 
-        g.setColor(new Color(230, 230, 230));
+		g.setColor(new Color(230, 230, 230));
 
 		int scaleDown = heldNumber.length() / 2;
-		
+
 		if (scaleDown == 0)
 		{
 			scaleDown = 1;
@@ -250,7 +302,7 @@ class Element
 		int centerPosx = (int)outer.getX() + (int)outer.getWidth() / 2 - newFontSize / 3;
 		int textPosx = centerPosx - heldNumber.length() / 2 * newFontSize / 3; 
 
-        g.setFont(new Font(Font.SERIF, Font.PLAIN, newFontSize));
-        g.drawString(heldNumber, textPosx, (int)outer.getY() + (int)outer.getHeight() / 2 + fontSize / 3);
-    }
+		g.setFont(new Font(Font.SERIF, Font.PLAIN, newFontSize));
+		g.drawString(heldNumber, textPosx, (int)outer.getY() + (int)outer.getHeight() / 2 + fontSize / 3);
+	}
 }

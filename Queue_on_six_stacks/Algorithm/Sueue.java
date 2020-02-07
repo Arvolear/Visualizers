@@ -1,6 +1,7 @@
 package Algorithm;
 
 import java.awt.*;
+import java.util.Vector;
 
 class Sueue
 {
@@ -275,9 +276,26 @@ class Sueue
 
 	void clear()
 	{
-		displayEmpty = true;
-		outputToCopy = 0;
-		copying = outputIsCopied = false;
+		Vector < Thread > clearer = new Vector < Thread >();
+
+		output.prepClear(clearer);
+		tmpStorage.prepClear(clearer);
+		outputCopy.prepClear(clearer);
+		outputHelper.prepClear(clearer);
+		input.prepClear(clearer);
+		inputHelper.prepClear(clearer);
+		
+		for (int i = 0; i < clearer.size(); i++)
+		{
+            try
+            {
+				clearer.get(i).join();
+            }
+            catch (InterruptedException ex)
+            {
+                System.out.println("Error: " + ex);
+            }
+		}
 
 		output.clear();
 		tmpStorage.clear();
@@ -286,6 +304,9 @@ class Sueue
 		input.clear();
 		inputHelper.clear();
 
+		outputToCopy = 0;
+		copying = outputIsCopied = false;
+		
 		displayEmpty = true;
 	}
 
