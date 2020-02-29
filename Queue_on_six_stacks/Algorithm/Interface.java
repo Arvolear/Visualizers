@@ -3,6 +3,7 @@ package Algorithm;
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 class Interface extends JPanel implements Runnable
@@ -10,20 +11,20 @@ class Interface extends JPanel implements Runnable
     private JFrame frame;
 	private Pane pane;
     private Controller controller;
-    private Sueue queue;
+    private ArrayList < Sueue > queues;
 	private Pseudocode pseudocode;
 
     private Grid grid;
 
-    Interface(JFrame frame, Pane pane, Controller controller, Sueue queue, Pseudocode pseudocode)
+    Interface(JFrame frame, Pane pane, Controller controller, ArrayList < Sueue > queues, Pseudocode pseudocode)
     {
 		this.frame = frame;
 		this.pane = pane;
         this.controller = controller;
-        this.queue = queue;
+        this.queues = queues;
 		this.pseudocode = pseudocode;
 
-        grid = new Grid(pane, controller, queue);
+        grid = new Grid(pane, controller, queues);
 		
 		init();
     }
@@ -46,7 +47,7 @@ class Interface extends JPanel implements Runnable
         g.setColor(new Color(30, 30, 30));
         g.fillRect(0, 0, 800, 600);
 
-        queue.paint(g);
+        queues.get(queues.size() - 1).paint(g);
         grid.paint(g);
 
 		pseudocode.update();

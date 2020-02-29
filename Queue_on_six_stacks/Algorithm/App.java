@@ -3,10 +3,11 @@ package Algorithm;
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class App implements Runnable
 {
-    private Sueue queue;
+    private ArrayList < Sueue > queues;
     private DynamicController dynamicController;
     private Controller controller;
     private Interface inter;
@@ -27,8 +28,13 @@ public class App implements Runnable
 
         controller = new Controller();
 		pseudocode = new Pseudocode(frame, controller);
-        queue = new Sueue(pseudocode);
-        inter = new Interface(frame, pane, controller, queue, pseudocode);
+		Sueue.pseudocode = pseudocode;
+        queues = new ArrayList<>();
+
+		Sueue sueue = new Sueue();
+		queues.add(sueue);
+
+        inter = new Interface(frame, pane, controller, queues, pseudocode);
 		menu = new Menu(frame, pane, controller);
         dynamicController = new DynamicController(controller, inter.getGrid(), pseudocode);
         
@@ -85,21 +91,37 @@ public class App implements Runnable
 			{
 				if (!inter.getGrid().getPushText().equals(""))
 				{
-					queue.push(inter.getGrid().getPushText());
+					Sueue tmp = new Sueue(queues.get(queues.size() - 1));
+					queues.add(tmp);
+
+					queues.get(queues.size() - 1).push(inter.getGrid().getPushText());
 				}
 			}
 			else if (controller.getWhat().equals("Pop"))
 			{
-				if (!queue.empty())
+				if (!queues.get(queues.size() - 1).empty())
 				{
-					queue.pop();
+					Sueue tmp = new Sueue(queues.get(queues.size() - 1));
+					queues.add(tmp);
+
+					queues.get(queues.size() - 1).pop();
 				}
 			}
 			else if (controller.getWhat().equals("Clear"))
 			{
-				if (!queue.empty())
+				if (!queues.get(queues.size() - 1).empty())
 				{
-					queue.clear();
+					Sueue tmp = new Sueue(queues.get(queues.size() - 1));
+					queues.add(tmp);
+
+					queues.get(queues.size() - 1).clear();
+				}
+			}
+			else if (controller.getWhat().equals("Undo"))
+			{
+				if (queues.size() > 1)
+				{
+					queues.remove(queues.size() - 1);
 				}
 			}
 

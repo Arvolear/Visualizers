@@ -18,7 +18,24 @@ class Sueue
 	private boolean displayEmpty;
 	private String emptyWord;
 
-	private Pseudocode pseudocode;
+	public static Pseudocode pseudocode;
+
+	Sueue(Sueue other)
+	{
+		output = new DrawableStack(other.output);
+		tmpStorage = new DrawableStack(other.tmpStorage);
+		outputCopy = new DrawableStack(other.outputCopy);
+		outputHelper = new DrawableStack(other.outputHelper);
+		input = new DrawableStack(other.input);
+		inputHelper = new DrawableStack(other.inputHelper);
+
+		outputToCopy = other.outputToCopy;
+		copying = other.copying;
+		outputIsCopied = other.outputIsCopied;
+
+		displayEmpty = other.displayEmpty;
+		emptyWord = new String(other.emptyWord);
+	}
 
     private void checkCopy()
     {
@@ -137,7 +154,7 @@ class Sueue
 		copying = !tmpStorage.empty();
 	}
 
-	Sueue(Pseudocode pseudocode) 
+	Sueue() 
 	{
 		displayEmpty = true;
 		emptyWord = new String("Queue is empty");
@@ -150,8 +167,6 @@ class Sueue
 		outputHelper = new DrawableStack("OutputHelper* (RC1)", 20, 315);
 		input = new DrawableStack("Input* (L)", 20, 410);
 		inputHelper = new DrawableStack("InputHelper* (L1)", 20, 505);
-
-		this.pseudocode = pseudocode;
 	}
 
 	boolean empty()

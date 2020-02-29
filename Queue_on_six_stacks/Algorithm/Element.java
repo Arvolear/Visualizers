@@ -51,6 +51,8 @@ class Element
     
     Element(Element elem)
     {
+        thisIndex = elem.thisIndex;
+
         this.posx = elem.posx;
         this.posy = elem.posy;
 

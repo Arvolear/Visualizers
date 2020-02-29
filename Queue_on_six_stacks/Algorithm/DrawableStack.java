@@ -27,6 +27,14 @@ class DrawableStack
             this.val = val;
             next = null;
         }
+
+		Node(Node other)
+		{
+			val = new Element(other.val);
+			next = null;
+			posx = other.posx;
+			posy = other.posy;
+		}
     }
 
     private int amount;
@@ -46,6 +54,38 @@ class DrawableStack
         amount = 0;
         head = null;
     }
+
+	DrawableStack(DrawableStack other)
+	{
+		amount = other.amount;
+		initx = other.initx;
+		inity = other.inity;
+		emptyx = other.emptyx;
+		emptyy = other.emptyy;
+		posx = other.posx;
+		posy = other.posy;
+		name = new String(other.name);
+		fontSize = other.fontSize;
+		head = null;
+
+		Node otherCurr = other.head;
+
+		while (otherCurr != null)
+		{
+			if (head != null)
+			{
+				Node curr = new Node(otherCurr);
+				curr.next = head;
+				head = curr;
+			}
+			else
+			{
+				head = new Node(otherCurr);
+			}
+
+			otherCurr = otherCurr.next;
+		}
+	}
 
 	void swap(DrawableStack stack)
 	{
