@@ -69,18 +69,19 @@ class DrawableStack
 		head = null;
 
 		Node otherCurr = other.head;
+		Node tmp = null;
 
 		while (otherCurr != null)
 		{
 			if (head != null)
 			{
-				Node curr = new Node(otherCurr);
-				curr.next = head;
-				head = curr;
+				tmp.next = new Node(otherCurr);
+				tmp = tmp.next;
 			}
 			else
 			{
 				head = new Node(otherCurr);
+				tmp = head;
 			}
 
 			otherCurr = otherCurr.next;

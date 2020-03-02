@@ -6,9 +6,6 @@ class Element
 {
     private static int speed = 1;
 
-    private static int lastIndex = 0;
-    private int thisIndex;
-
     private double posx, posy;
     private int width, height;
 
@@ -30,9 +27,6 @@ class Element
 
     Element(int posx, int posy, int width, int height, String heldNumber)
     {
-        thisIndex = lastIndex;
-        lastIndex++;
-
         this.posx = posx;
         this.posy = posy;
         this.width = width;
@@ -51,8 +45,6 @@ class Element
     
     Element(Element elem)
     {
-        thisIndex = elem.thisIndex;
-
         this.posx = elem.posx;
         this.posy = elem.posy;
 
