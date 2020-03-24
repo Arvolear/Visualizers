@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 class Pseudocode extends JPanel implements MouseWheelListener
 {
 	private JFrame mainFrame, frame;
