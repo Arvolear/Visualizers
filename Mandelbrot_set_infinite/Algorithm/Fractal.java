@@ -14,6 +14,8 @@ public class Fractal
     private static int IMAGE_HEIGHT = 480;
 
 	private static String outputDir = "./Output/Mandelbrot/";
+	private static String prefix = "out0-";
+
 	private static String ext = "png";
 	private int imageCounter = 0;
 
@@ -108,7 +110,8 @@ public class Fractal
 
 					if (threadCompleatedCounter == number)
 					{
-						completed = true;				
+						saveImage();
+						completed = true;
 					}
 				}
 			});
@@ -167,7 +170,7 @@ public class Fractal
 	{
 		try
 		{
-			ImageIO.write(image, ext, new File(outputDir + String.valueOf(imageCounter) + "." + ext));
+			ImageIO.write(image, ext, new File(outputDir + prefix + String.valueOf(imageCounter) + "." + ext));
 
 			System.out.println("Name: " + imageCounter + "." + ext);
 			System.out.println("maxAbsSquared = " + maxAbsSquared + ", maxIterations = " + maxIterations);
