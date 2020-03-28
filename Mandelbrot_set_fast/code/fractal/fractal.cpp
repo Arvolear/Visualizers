@@ -16,10 +16,10 @@ Fractal::Fractal()
 	maxIterations = 70;
 	maxAbs = 2.0;
 
-	realBeg = -2.0;
-	realEnd = 1.0;
-	imagBeg = -1.0;
-	imagEnd = 1.0;
+	realBeg = -2.95;
+	realEnd = 1.95;
+	imagBeg = -1.2;
+	imagEnd = 1.2;
 
 	zoom = 1.0;
 	realOffset = 0.0;
@@ -31,7 +31,7 @@ Fractal::Fractal()
 	screenShotNum = 0;
 
 	outputDir = "output/Mandelbrot/";
-	prefix = "out0-";
+	prefix = "out3-";
 }
 
 bool Fractal::checkEvents()
