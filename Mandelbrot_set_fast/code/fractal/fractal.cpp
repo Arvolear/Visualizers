@@ -5,13 +5,16 @@ Fractal::Fractal()
 	window = new Window();
 
 	fractalBuffer = new ColorBuffer();
-	fractalBuffer->genBuffer(window->getRenderSize(), {{GL_RGBA32F, GL_RGBA, GL_FLOAT}});
+	fractalBuffer->genBuffer(window->getRenderSize(), {{GL_RGBA16F, GL_RGBA, GL_FLOAT}});
 
 	fractalQuad = new RenderQuad();
 	fractalQuad->init();
 
 	fractalShader = new Shader();
 	fractalShader->loadShaders(global.path("code/shader/mandelbrotShader.vert"), global.path("code/shader/mandelbrotShader.frag"));
+
+	gauss = new GaussianBlur < ColorBuffer >();
+	gauss->genBuffer(window->getRenderSize(), {GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE});
 
 	maxIterations = 70;
 	maxAbs = 2.0;
@@ -31,7 +34,7 @@ Fractal::Fractal()
 	screenShotNum = 0;
 
 	outputDir = "output/Mandelbrot/";
-	prefix = "out3-";
+	prefix = "out0-";
 }
 
 bool Fractal::checkEvents()
@@ -92,6 +95,11 @@ void Fractal::compute()
 	fractalQuad->render(fractalShader);
 }
 
+void Fractal::blur()
+{
+	gauss->blur(fractalBuffer->getTexture(), 16.0, 2.0);
+}
+
 void Fractal::saveScreenShot()
 {
 	string output = outputDir + prefix + to_string(screenShotNum) + ".bmp";
@@ -107,6 +115,7 @@ void Fractal::saveScreenShot()
 void Fractal::play()
 {
 	compute();
+	//blur();
 	saveScreenShot();
 
 	while (window->isOpen())
@@ -116,10 +125,12 @@ void Fractal::play()
 		if (checkEvents())
 		{
 			compute();
+			//blur();
 			saveScreenShot();
 		}
 
 		window->render(fractalBuffer->getTexture());
+		//window->render(gauss->getTexture());
 	}
 }
 

@@ -2,6 +2,8 @@
 
 #include "../window/window.hpp"
 #include "../framebuffer/colorbuffer.hpp"
+#include "../global/gaussianblur.hpp"
+#include "../global/gaussianblur.cpp"
 
 #include <SOIL/SOIL.h>
 
@@ -18,12 +20,15 @@ class Fractal
 		RenderQuad* fractalQuad;
 		Shader* fractalShader;
 
+		GaussianBlur < ColorBuffer >* gauss; 
+
 		int screenShotNum;
 		string outputDir;
 		string prefix;
 
 		bool checkEvents();
 		void compute();
+		void blur();
 		void saveScreenShot();
 
 		int maxIterations;
