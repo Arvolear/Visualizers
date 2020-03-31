@@ -8,6 +8,7 @@
 #include <SOIL/SOIL.h>
 
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -26,6 +27,10 @@ class Fractal
 		string outputDir;
 		string prefix;
 
+		bool isBlur;
+
+		double sensitivity;
+
 		bool checkEvents();
 		void compute();
 		void blur();
@@ -42,6 +47,8 @@ class Fractal
 		double zoom;
 		double realOffset;
 		double imagOffset;
+
+		stack < pair < double, double > > unZoomUndo;
 
 		double zoomAmount;
 		double precisionAmount;

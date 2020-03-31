@@ -14,7 +14,7 @@ Fractal::Fractal()
 	fractalShader->loadShaders(global.path("code/shader/mandelbrotShader.vert"), global.path("code/shader/mandelbrotShader.frag"));
 
 	gauss = new GaussianBlur < ColorBuffer >();
-	gauss->genBuffer(window->getRenderSize(), {GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE});
+	gauss->genBuffer(window->getRenderSize(), {GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE}, 4);
 
 	maxIterations = 70;
 	maxAbs = 2.0;
@@ -33,6 +33,10 @@ Fractal::Fractal()
 
 	screenShotNum = 0;
 
+	sensitivity = 0.1;
+
+	isBlur = false;
+
 	outputDir = "output/Mandelbrot/";
 	prefix = "out0-";
 }
@@ -47,13 +51,15 @@ bool Fractal::checkEvents()
 
         double realOld = ((point.x / size.x) * (realEnd - realBeg) + realBeg) / zoom;
         double imagOld = ((point.y / size.y) * (imagEnd - imagBeg) + imagBeg) / zoom;
-		
+
 		zoom *= zoomAmount;	
 		maxIterations *= precisionAmount;
         
         double realNew = ((point.x / size.x) * (realEnd - realBeg) + realBeg) / zoom;
         double imagNew = ((point.y / size.y) * (imagEnd - imagBeg) + imagBeg) / zoom;
 
+		unZoomUndo.push({realOffset, imagOffset});
+		
 		realOffset -= realNew - realOld;
 		imagOffset += imagNew - imagOld;
 
@@ -63,9 +69,93 @@ bool Fractal::checkEvents()
 	if (window->isKeyPressedOnce(GLFW_KEY_MINUS))
 	{
 		cout << "Zoomout" << endl;
-
-		zoom /= zoomAmount;
+	
+		zoom /= zoomAmount;	
 		maxIterations /= precisionAmount;
+
+		if (!unZoomUndo.empty())
+		{
+			pair < double, double > old = unZoomUndo.top();
+			unZoomUndo.pop();
+
+			realOffset = old.first;
+			imagOffset = old.second;
+		}
+	
+		return true;
+	}
+
+	if (window->isKeyPressedOnce(GLFW_KEY_B))
+	{
+		cout << "Blur" << endl;
+
+		isBlur = (isBlur + 1) % 2;
+
+		return true;
+	}
+	
+	if (window->isKeyPressedOnce(GLFW_KEY_A))
+	{
+		sensitivity /= 1.05;
+
+		cout << "Dec sens " << sensitivity << endl;
+	}
+	
+	if (window->isKeyPressedOnce(GLFW_KEY_S))
+	{
+		sensitivity *= 1.05;
+
+		cout << "Inc sens " << sensitivity << endl;
+	}
+	
+	if (window->isKeyPressedOnce(GLFW_KEY_Z))
+	{
+		zoomAmount /= 1.05;
+		precisionAmount /= 1.019;	
+
+		cout << "Dec zoom " << zoomAmount << " " << precisionAmount << endl;
+	}
+	
+	if (window->isKeyPressedOnce(GLFW_KEY_X))
+	{
+		zoomAmount *= 1.05;
+		precisionAmount *= 1.019;	
+
+		cout << "Inc zoom " << zoomAmount << " " << precisionAmount << endl;
+	}
+
+	if (window->isKeyPressed(GLFW_KEY_UP))
+	{
+		cout << "Move up" << endl;
+
+		imagOffset += sensitivity / zoom;
+
+		return true;
+	}
+	
+	if (window->isKeyPressed(GLFW_KEY_DOWN))
+	{
+		cout << "Move down" << endl;
+
+		imagOffset -= sensitivity / zoom;
+
+		return true;
+	}
+	
+	if (window->isKeyPressed(GLFW_KEY_LEFT))
+	{
+		cout << "Move left" << endl;
+
+		realOffset -= sensitivity / zoom;
+
+		return true;
+	}
+	
+	if (window->isKeyPressed(GLFW_KEY_RIGHT))
+	{
+		cout << "Move right" << endl;
+
+		realOffset += sensitivity / zoom;
 
 		return true;
 	}
@@ -97,7 +187,7 @@ void Fractal::compute()
 
 void Fractal::blur()
 {
-	gauss->blur(fractalBuffer->getTexture(), 16.0, 2.0);
+	gauss->blur(fractalBuffer->getTexture(), 16.0, 1.0);
 }
 
 void Fractal::saveScreenShot()
@@ -115,7 +205,6 @@ void Fractal::saveScreenShot()
 void Fractal::play()
 {
 	compute();
-	//blur();
 	saveScreenShot();
 
 	while (window->isOpen())
@@ -125,12 +214,23 @@ void Fractal::play()
 		if (checkEvents())
 		{
 			compute();
-			//blur();
+	
+			if (isBlur)
+			{
+				blur();
+			}
+
 			saveScreenShot();
 		}
 
-		window->render(fractalBuffer->getTexture());
-		//window->render(gauss->getTexture());
+		if (isBlur)
+		{
+			window->render(gauss->getTexture());
+		}
+		else
+		{
+			window->render(fractalBuffer->getTexture());
+		}
 	}
 }
 
