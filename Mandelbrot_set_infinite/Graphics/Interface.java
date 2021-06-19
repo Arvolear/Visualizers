@@ -10,7 +10,7 @@ import java.awt.event.*;
 public class Interface extends JPanel implements KeyListener
 {
 	private static int WINDOW_WIDTH = 720;
-	private static int WINDOW_HEIGHT = 509;
+	private static int WINDOW_HEIGHT = 510;
 
 	private Dimension renderSize;
 	private JFrame frame;

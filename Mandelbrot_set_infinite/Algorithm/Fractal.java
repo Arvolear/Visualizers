@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.image.*;
 import javax.imageio.*;
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -125,7 +124,7 @@ public class Fractal
 		completed = false;
 		threadCompleatedCounter = 0;
 
-		spreadComputeToThreads(4);
+		spreadComputeToThreads(8);
 	}
 
 	public void zoomIn(Point point)
