@@ -150,3 +150,6 @@ class Fractal:
 
     def getFractal(self):
         return self.image
+
+    def getZoom(self):
+        return self.zoom
